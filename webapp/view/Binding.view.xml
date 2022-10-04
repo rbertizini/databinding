@@ -1,0 +1,31 @@
+<mvc:View controllerName="databinding.controller.Binding"
+    xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+        <content>
+
+			<ComboBox
+				id="cboxModelo"
+				
+				items="{
+					path: 'DataMod>/modelos',
+					sorter: { path: 'nome' }
+				}">
+				<core:Item key="{DataMod>id}" text="{DataMod>nome}" />
+			</ComboBox>
+
+
+			<ComboBox
+				id="cboxCateg"
+				items="{
+					path: 'DataCat>/categorias',
+					sorter: { path: 'nome' }
+				}">
+				<core:Item key="{DataCat>id}" text="{DataCat>nome}" />
+			</ComboBox>
+
+
+
+		</content>
+    </Page>
+</mvc:View>
