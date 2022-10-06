@@ -6,7 +6,7 @@
 
 			<ComboBox
 				id="cboxModelo"
-				
+				selectionChange="cboxCategFill"
 				items="{
 					path: 'DataMod>/modelos',
 					sorter: { path: 'nome' }
