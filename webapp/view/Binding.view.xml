@@ -14,15 +14,54 @@
 				<core:Item key="{DataMod>id}" text="{DataMod>nome}" />
 			</ComboBox>
 
-
 			<ComboBox
 				id="cboxCateg"
+				selectionChange="lstLivroFill"
 				items="{
 					path: 'DataCat>/categorias',
 					sorter: { path: 'nome' }
 				}">
 				<core:Item key="{DataCat>id}" text="{DataCat>nome}" />
 			</ComboBox>
+
+			<List
+				id="LstLivros"
+				class="sapUiResponsiveMargin"
+				width="auto"						
+				items="{
+							path: 'DataLiv>/livros',
+							sorter:
+								{
+									path: 'nome',
+									group: false,
+									descending: false
+								}
+						}"
+				noDataText="Seleciona um modelo e categoria antes de visualizar os livros">			
+				<headerToolbar>
+					<Toolbar>
+						<Title text="{i18n>titlelivros}"/>
+					</Toolbar>
+				</headerToolbar>
+				<items>
+					<ObjectListItem
+						title="{DataLiv>nome} ({DataLiv>autor})"						
+						number="{
+									parts: [{path: 'DataLiv>valor'},'BRL'],
+									type: 'sap.ui.model.type.Currency',
+									formatOptions: {
+										preserveDecimals : false,
+										currencyCode : true
+									}
+								}"
+								
+								numberState="{= ${DataLiv>valor} > 50 ? 'Error' : 'Success' }">
+						<firstStatus>
+							<ObjectStatus text="{i18n>infoestoque}: { path: 'DataLiv>quantidade' }"/>
+						</firstStatus>
+					</ObjectListItem>
+				</items>
+			</List>
 
 
 

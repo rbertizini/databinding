@@ -17,10 +17,18 @@ sap.ui.define([
                 var oCategoria = new JSONModel("");
                 this.getView().setModel(oCategoria, "DataCat");
 
+                var oLivro = new JSONModel("");
+                this.getView().setModel(oLivro, "DataLiv");
+
             },
 
             cboxCategFill: function(joao) {
                 //alert(joao.getParameter("selectedItem").getKey());
+
+                this.getView().byId("cboxCateg").clearSelection();
+
+                var oLivro = new JSONModel("");
+                this.getView().setModel(oLivro, "DataLiv");
 
                 var oCategoria = new JSONModel("json/categoria.json");
                 this.getView().setModel(oCategoria, "DataCat");
@@ -30,8 +38,18 @@ sap.ui.define([
                         "EQ",
                         joao.getParameter("selectedItem").getKey())
                 ]);
-
-
             },
+
+            lstLivroFill: function(info) {
+
+                var oLivro = new JSONModel("json/livro.json");
+                this.getView().setModel(oLivro, "DataLiv");
+                this.getView().byId("LstLivros").getBinding("items").filter([
+                    new sap.ui.model.Filter(
+                        "idcategoria",
+                        "EQ",
+                        info.getParameter("selectedItem").getKey())
+                ]);
+            }
         });
     });
